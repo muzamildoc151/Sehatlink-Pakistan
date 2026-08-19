@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Patient Request — SehatLink</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="nav"><a class="brand" href="index.html"><b>+</b> Sehat<span>Link</span></a><nav><a href="index.html">Home</a><a href="how-it-works.html">How it works</a></nav><a class="btn small" href="request.html">Rs. 200</a></header>
+<main class="request">
+<div class="request-intro"><div class="eyebrow">STEP 1 OF 2 • PATIENT REQUEST</div><h1>Tell us what is happening.</h1><p>This is a short history, not a diagnosis form. Give us enough information to understand your concern and where you are located.</p></div>
+<div class="progress"><span></span><span></span></div>
+<form id="caseForm">
+<section><h2>About you</h2><div class="grid"><label>Full name<input name="name" required></label><label>Age<input name="age" type="number" min="0" max="120" required></label><label>Gender<select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option><option>Other / prefer not to say</option></select></label><label>City / area<input name="location" placeholder="e.g. Lahore, Johar Town" required></label><label>WhatsApp / phone<input name="phone" placeholder="+92..." required></label></div></section>
+<section><h2>Your main problem</h2><label>Main complaint<textarea name="problem" rows="4" placeholder="Explain the problem in your own words." required></textarea></label><div class="grid"><label>How long?<input name="duration" placeholder="e.g. 3 days / 2 months" required></label><label>Severity<select name="severity"><option>Mild</option><option selected>Moderate</option><option>Severe</option></select></label></div><label>Other symptoms<textarea name="symptoms" rows="3" placeholder="Fever, vomiting, weight loss, rash, pain, etc."></textarea></label></section>
+<section><h2>Relevant medical background</h2><label>Known conditions<textarea name="conditions" rows="2" placeholder="Diabetes, hypertension, asthma, pregnancy, previous surgery, etc."></textarea></label><label>Current medicines<textarea name="medicines" rows="2"></textarea></label><label>Relevant tests/reports<textarea name="tests" rows="2" placeholder="Blood tests, X-ray, ultrasound, CT, endoscopy, etc."></textarea></label></section>
+<section><h2>What are you looking for?</h2><div class="choices"><label><input type="radio" name="need" value="specialist" checked> <b>I don't know which specialist I need</b></label><label><input type="radio" name="need" value="nearby"> <b>I know the specialty but need nearby options</b></label></div></section>
+<section class="consent"><label><input type="checkbox" required> I understand SehatLink provides healthcare navigation and does not replace an in-person consultation or emergency care. I consent to my submitted information being used to respond to this request.</label></section>
+<section class="fee"><div><small>INTRODUCTORY SERVICE FEE</small><strong>Rs. 200</strong><p>After this form, the next step is payment verification. This demo uses a placeholder; connect a secure payment provider before launch.</p></div><div class="paytag">PAYMENT<br>GATEWAY<br>TO CONNECT</div></section>
+<button class="btn full" type="submit">Continue to payment →</button>
+<p class="tiny">Do not submit CNIC numbers, passwords, card PINs or unnecessary sensitive documents.</p>
+</form>
+
+<div id="payment" class="payment hidden"><div class="eyebrow">STEP 2 OF 2 • PAYMENT</div><h2>Request created.</h2><p>Your case is ready for payment verification. In the production version, this screen will connect to your chosen secure payment provider and then create a private case for your team.</p><div class="caseid">DEMO CASE ID: <b id="caseId"></b></div><div class="paymethods"><div><b>JazzCash</b><small>Connect merchant checkout</small></div><div><b>Easypaisa</b><small>Connect merchant checkout</small></div><div><b>Card / bank</b><small>Connect payment gateway</small></div></div><a class="btn" href="index.html">Return home</a></div>
+</main>
+<footer><div><a class="brand" href="index.html"><b>+</b> Sehat<span>Link</span></a><p>Private case workflow — production backend required.</p></div><small>© 2026 SehatLink</small></footer>
+<script src="app.js"></script>
+</body></html>
