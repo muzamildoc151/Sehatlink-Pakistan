@@ -1,0 +1,9 @@
+import{createClient}from"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";import{SUPABASE_URL,SUPABASE_ANON_KEY}from"./config.js";
+const msg=document.getElementById("msg"),box=document.getElementById("cases");if(!SUPABASE_URL||!SUPABASE_ANON_KEY){msg.textContent="Configure config.js first.";throw 0}
+const s=createClient(SUPABASE_URL,SUPABASE_ANON_KEY);const{data:{user}}=await s.auth.getUser();if(!user){location.href="doctor-login.html";}
+document.getElementById("logout").onclick=async()=>{await s.auth.signOut();location.href="doctor-login.html"};
+const{data,error}=await s.from("cases").select("id,case_code,name,age,city,problem,status,created_at,assigned_doctor_id").order("created_at",{ascending:false});
+if(error){msg.textContent=error.message;}else if(!data.length){box.innerHTML="<p>No cases.</p>";}else{
+data.forEach(c=>{const el=document.createElement("article");el.className="case";el.innerHTML=`<span class="status">${c.status}</span><h3>${safe(c.case_code)} · ${safe(c.name)}</h3><p>${safe(c.age)} years · ${safe(c.city)}</p><p>${safe(c.problem)}</p><select data-id="${c.id}"><option value="payment_pending">payment_pending</option><option value="paid_new">paid_new</option><option value="review">review</option><option value="follow_up">follow_up</option><option value="referral_ready">referral_ready</option><option value="closed">closed</option></select><button class="btn small approve" data-id="${c.id}">Save status</button></article>`;box.appendChild(el);});
+document.querySelectorAll(".approve").forEach(b=>b.onclick=async()=>{const id=b.dataset.id;const sel=document.querySelector(`select[data-id="${id}"]`);const{error}=await s.from("cases").update({status:sel.value}).eq("id",id);msg.textContent=error?error.message:"Status updated.";});
+}function safe(x){return String(x??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));}
